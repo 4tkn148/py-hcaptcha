@@ -87,7 +87,7 @@ proof_set_event = threading.Event()
 latest_data = None
 latest_proof = None
 
-sio.connect("http://localhost:9932")
+sio.connect("http://127.0.0.1:9932")
 
 @sio.on("response")
 def on_response(token):
