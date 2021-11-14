@@ -5,7 +5,8 @@ from urllib.parse import urlsplit
 import ssl
 
 class HTTPClient:
-    _default_ssl_context = ssl.create_default_context()
+    ssl._create_default_https_context = ssl._create_unverified_context
+    _default_ssl_context = ssl._create_unverified_context()
 
     def __init__(
         self,
