@@ -4,12 +4,14 @@ from urllib.parse import urlsplit
 import json
 import random
 
+
 def latest_chrome_agent():
     with HTTPClient() as http:
         resp = http.request(
             method="GET",
             url="https://jnrbsn.github.io/user-agents/user-agents.json")
-        data = json.loads(resp.read())
+
+        data = json.loads(resp.read().decode("utf-8"))
         return data[0]
 
 class ChromeAgent(Agent):
@@ -120,7 +122,7 @@ class ChromeAgent(Agent):
                 "internal-pdf-viewer"
             ]
         }
-    
+
     def format_headers(
         self,
         url: str,
@@ -157,11 +159,11 @@ class ChromeAgent(Agent):
                 headers["Referer"] = p_origin_url.scheme + "://" + p_origin_url.hostname + p_origin_url.path + (("?" + p_origin_url.query) if p_origin_url.query else "")
             elif origin_url:
                 headers["Referer"] = p_origin_url.scheme + "://" + p_origin_url.hostname + p_origin_url.path + "/"
-        
+
         elif sec_mode == "cors" and origin_url:
             headers["Origin"] = p_origin_url.scheme + "://" + p_origin_url.hostname
             headers["Referer"] = p_origin_url.scheme + "://" + p_origin_url.hostname + p_origin_url.path + (("?" + p_origin_url.query) if p_origin_url.query else "")
-        
+
         elif sec_mode == "no-cors" and origin_url:
             headers["Origin"] = p_origin_url.scheme + "://" + p_origin_url.hostname
             headers["Referer"] = p_origin_url.scheme + "://" + p_origin_url.hostname + p_origin_url.path + (("?" + p_origin_url.query) if p_origin_url.query else "")
