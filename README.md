@@ -4,7 +4,7 @@ An unofficial wrapper for interacting with hCaptcha challenges.
 # Install
 * Device must be have Google Chrome installed.
 ```bash
-pip install -U git+https://github.com/h0nde/py-hcaptcha
+pip install -U git+https://github.com/4tkn148/py-hcaptcha
 ```
 
 # Usage
